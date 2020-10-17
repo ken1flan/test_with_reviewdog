@@ -10,6 +10,12 @@
   },
   "version": "0.1.0",
   "devDependencies": {
+    "eslint": "^7.12.1",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-plugin-import": "^2.22.1",
+    "stylelint": "^13.7.2",
+    "stylelint-config-standard": "^20.0.0",
+    "stylelint-scss": "^3.18.0",
     "webpack-dev-server": "^3.11.0"
   }
 }
