@@ -4,6 +4,7 @@ class BlogsController < ApplicationController
   # GET /blogs
   # GET /blogs.json
   def index
+    test = 'test' # rubocop
     @blogs = Blog.all
   end
 
