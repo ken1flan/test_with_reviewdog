@@ -8,6 +8,8 @@ class BlogsController < ApplicationController
     @blogs = Blog.all
     # brakeman
     @blogs = @blogs.where("title like '%#{keyword}%' or body like '%#{keyword}%'") if (keyword = params[:kw]).present?
+    # reek
+    @var_nil = true if params[:var1].nil?
   end
 
   # GET /blogs/1
