@@ -6,6 +6,8 @@ class BlogsController < ApplicationController
   def index
     test = 'test' # rubocop
     @blogs = Blog.all
+    # brakeman
+    @blogs = @blogs.where("title like '%#{keyword}%' or body like '%#{keyword}%'") if (keyword = params[:kw]).present?
   end
 
   # GET /blogs/1
