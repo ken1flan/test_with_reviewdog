@@ -1,0 +1,34 @@
+name: code_analysis
+on: [pull_request]
+jobs:
+  code_analysis:
+    name: runner
+    runs-on: ubuntu-latest
+    env:
+      REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.7.1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+      - name: cache vendor/bundle
+        uses: actions/cache@v1
+        with:
+          path: vendor/bundle
+          key: bundle-${{ hashFiles('**/Gemfile.lock') }}
+      - name: cache node_modules
+        uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: yarn-${{ hashFiles('**/yarn.lock') }}
+      - name: bundle install
+        run: bundle check || bundle install --jobs=4 --retry=3 --path vendor/bundle
+      - name: yarn install
+        run: yarn install
+      - name: install reviewdog
+        uses: reviewdog/action-setup@v1
+      - name: reviewdog
+        run: reviewdog -reporter=github-pr-check

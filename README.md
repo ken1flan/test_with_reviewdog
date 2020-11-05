@@ -1,24 +1,19 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+RailsプロジェクトにGitHub Actionsとreviewdogを使って、
+自動コードレビューを行うサンプルです。
 
-Things you may want to cover:
+- [reviewdog](https://github.com/reviewdog/reviewdog)
+- [rubocop](https://github.com/rubocop-hq/rubocop)
+- [brakeman](https://github.com/presidentbeef/brakeman)
+- [reek](https://github.com/troessner/reek)
+- [haml-lint](https://github.com/sds/haml-lint)
+- [eslint](https://github.com/eslint/eslint)
+- [stylelint](https://github.com/stylelint/stylelint)
 
-* Ruby version
+自動レビューはGitHubにプルリクエストを作成すると行われるようになっています。
+プルリクエストを出す前に手元で確認したいときには↓のようにコマンドラインでreviewdogを実行します。
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+```console
+$ reviewdog -diff="git diff main"
+```
